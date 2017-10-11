@@ -3,7 +3,7 @@
 
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.chemchina</groupId>
-	<artifactId>maventest</artifactId>
+	<artifactId>maventest-li</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>mule</packaging>
 	<name>Mule maventest Application</name>
@@ -15,6 +15,8 @@
 		<mule.version>3.8.4</mule.version>
 		<derby.version>10.12.1.1</derby.version>
     	<mule.tools.version>1.2</mule.tools.version>
+    	<uid>lizhaohui</uid>
+    	<pwd></pwd>
 	</properties>
 
 	<build>
@@ -54,6 +56,29 @@
 						</configuration>
 					</execution>
 				</executions>
+			</plugin>
+			<plugin>
+			   <groupId>org.mule.tools.maven</groupId>
+			   <artifactId>mule-maven-plugin</artifactId>
+			   <version>2.0</version>
+			   <configuration>
+			       <deploymentType>cloudhub</deploymentType>
+			       <muleVersion>${mule.version}</muleVersion>
+			       <username>${uid}</username>
+			       <password>${pwd}</password>
+			       <workerType>Micro</workerType>
+			       <redeploy>true</redeploy>
+			       <environment>Sandbox</environment>
+			   </configuration>
+			   <executions>
+			      <execution>
+			         <id>deploy</id>
+			         <phase>deploy</phase>
+			         <goals>
+			            <goal>deploy</goal>
+			         </goals>
+			      </execution>
+			   </executions>
 			</plugin>
 		</plugins>
 	</build>
